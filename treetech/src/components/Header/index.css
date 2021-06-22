@@ -1,0 +1,21 @@
+  
+  @font-face {
+    font-family: MonMedium;
+    src: url('../../assets/fonts/Montserrat-Medium.ttf');
+  }
+  
+.mr-auto{
+    font-family: MonMedium;
+    font-size: 1em;
+    margin-left: 25px;
+}
+.menu{
+   color:  rgba(0, 0, 0, 0.295)
+}
+
+.tecnologias{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

@@ -1,0 +1,60 @@
+@font-face {
+    font-family: MonRegular;
+    src: url('../../assets/fonts/Montserrat-Regular.ttf');
+  }
+  
+  @font-face {
+    font-family: MonThin;
+    src: url('../../assets/fonts/Montserrat-Thin.ttf');
+  }
+  
+  @font-face {
+    font-family: MonMedium;
+    src: url('../../assets/fonts/Montserrat-Medium.ttf');
+  }
+  
+.menu-inferior{
+    width: 100%;
+    height: 250px;
+    background-color: #09bc8a;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.contato{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.contato ul{
+    list-style: none;
+    color : white;
+    font-size: 1.2em;
+    height: 80%;
+    font-family: MonRegular;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+.contato ul a{
+    text-decoration: none;
+    color : white;
+}
+.copyLogo{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    font-family: MonThin;
+    font-size: 1em;
+}
+.copyLogo img{
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+}

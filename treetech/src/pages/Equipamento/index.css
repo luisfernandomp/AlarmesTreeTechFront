@@ -1,0 +1,28 @@
+@font-face {
+    font-family: MonMedium;
+    src: url('../../assets/fonts/Montserrat-Medium.ttf');
+}
+
+@font-face {
+    font-family: Mon;
+    src: url('../../assets/fonts/Montserrat-Medium.ttf');
+}
+
+@font-face {
+    font-family: MonRegular;
+    src: url('../../assets/fonts/Montserrat-Thin.ttf');
+}
+.equipamentos{
+    margin : 100px;
+}
+.bannerEquipamento{
+    background-color: #fffafa;
+    color : white;
+}
+.bannerEquipamento h1{
+    font-family: Mon;
+}
+.bannerEquipamento p{
+    font-family: MonRegular;
+    margin-top: 15px;
+}
