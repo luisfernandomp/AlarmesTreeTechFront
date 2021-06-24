@@ -1,15 +1,43 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './index.css';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import EquipamentoServico from '../../services/equipamentoServico';
 import { Modal, Jumbotron, Container, Card, Button, Form, FormControl} from 'react-bootstrap';
+import CardEquipamento from '../../components/CardEquipamento';
+import Pagination from '../../components/CardEquipamento/Pagination';
 
  const Equipamento = () => {
     const [show, setShow] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [equipamentosPerPage] = useState(6);
+    const [equipamentos, setEquipamentos] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    useEffect(() => {
+        listarEquipamentos();
+    },[])
+
+    const listarEquipamentos = async () => {
+        await EquipamentoServico
+        .listar()
+        .then(resultado => {
+            setLoading(false);
+            setEquipamentos(resultado.data);
+        });
+    }
+
+    const indexOfLastEquipamento = currentPage * equipamentosPerPage;
+    const indexOfFirstEquipamento = indexOfLastEquipamento - equipamentosPerPage;
+    const currentEquipamentos = equipamentos.slice(indexOfFirstEquipamento, indexOfLastEquipamento);
+
+    const paginate = pageNumber => {
+        console.log(pageNumber);
+        setCurrentPage(pageNumber);
+    }
     return (
         <div>
             <Header />
@@ -23,25 +51,9 @@ import { Modal, Jumbotron, Container, Card, Button, Form, FormControl} from 'rea
                 </Container>
             </Jumbotron>
             <div className="equipamentos">
-                <Button variant="success" onClick={handleShow} style={{backgroundColor : '#3ec300', margin : 20}}>Incluir equipamento</Button>
-                <Form inline>
-                    <FormControl type="text" placeholder="Search" className=" mr-sm-2" />
-                    <Button type="submit">Submit</Button>
-                </Form>
-                <Card style={{ width: '18rem' }} style={{display : 'flex', flexDirection : 'row'}}>
-                    <Card.Img variant="top" style={{margin : 20, width : 120, heigth : 120, objectFit : 'cover'}} src="https://img.flaticon.com/icons/png/512/1104/1104939.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF" />
-                    <Card.Body className="cartao">
-                        <Card.Title>Card Title</Card.Title>
-                        <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
-                        </Card.Text>
-                        <div style={{display : 'flex', width : 150, justifyContent : 'space-between'}}>
-                            <Button variant="warning">Editar</Button>
-                            <Button variant="danger">Excluir</Button>
-                        </div>
-                    </Card.Body>
-                </Card>
+                <Button variant="success" onClick={handleShow} className="buttonIncluir">Incluir</Button>
+                <CardEquipamento equipamentos={currentEquipamentos} loading={loading} />
+                <Pagination equipamentosPerPages={equipamentosPerPage} paginate={paginate} totalEquipamentos={equipamentos.length} />
             </div>
             <Footer />
             <Modal show={show} onHide={handleClose}>
@@ -64,3 +76,33 @@ import { Modal, Jumbotron, Container, Card, Button, Form, FormControl} from 'rea
 }
 
 export default Equipamento;
+
+/*
+
+<div className="boxEquipamentos">
+            {
+                equipamentos.map((item, index) => {
+                    return(
+                            <Card className="cardEquipamento" key={index}>
+                            <Card.Img variant="top" className="imgCartao" src="https://img.flaticon.com/icons/png/512/1104/1104939.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF" />
+                            <Card.Body className="cartao">
+                                <Card.Title>{item.nome}</Card.Title>
+                                <Card.Text style={{width : '100%', justifyContent : 'flex-start'}}>
+                                    <div>Data cadastro : {item.datacadastro}</div>
+                                    <div>Serie : {item.serie}</div>
+                                    <div>Nome : {item.tipo}</div>
+                                </Card.Text>
+                                <div className="containerButtons">
+                                    <Button variant="warning">Editar</Button>
+                                    <Button variant="danger">Excluir</Button>
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    
+                    )  
+                })
+                  
+            }
+            </div>     
+
+*/

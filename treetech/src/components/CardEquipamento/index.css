@@ -18,6 +18,18 @@
     flex-direction: column;
     justify-content: flex-start;
 }
+.pages{
+    margin : 100px;
+    align-self: center;
+}
+.pages li a{
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+}
 .cardEquipamento{
     width: 250px;
     height: auto;
@@ -61,15 +73,4 @@
     flex-direction: column;
     justify-content: flex-start;
 
-}
-.bannerEquipamento{
-    background-color: #09bc8a;
-    color : white;
-}
-.bannerEquipamento h1{
-    font-family: Mon;
-}
-.bannerEquipamento p{
-    font-family: MonRegular;
-    margin-top: 15px;
 }
